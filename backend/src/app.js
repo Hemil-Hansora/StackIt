@@ -19,12 +19,7 @@ app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 
 app.use(cookieParser());
 
-app.post("/user",UserRouter);
-
-
-
-
-
+app.use("/user",UserRouter);
 
 
 app.use(errorMiddleware);

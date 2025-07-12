@@ -1,8 +1,8 @@
-import User from "../models/user.model";
-import { ApiError } from "../utils/apiError";
-import { ApiResponse } from "../utils/apiResponse";
-import { asyncHandler } from "../utils/asyncHandler";
-import { loginSchema, registerSchema } from "../validation";
+import User from "../models/user.model.js";
+import { ApiError } from "../utils/apiError.js";
+import { ApiResponse } from "../utils/apiResponse.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
+import { loginSchema, registerSchema } from "../validation/index.js";
 
 
 const generateAccessToken = async (userId) => {
@@ -23,7 +23,7 @@ const generateAccessToken = async (userId) => {
     );
   }
 };
-const register = asyncHandler(async () => {
+const register = asyncHandler(async (req,res) => {
   const validUser = registerSchema.safeParse(req.body);
   if (!validUser.success) {
     throw new ApiError(400, validUser.error.message);
@@ -90,4 +90,4 @@ const login = asyncHandler(async (req, res) => {
     );
 });
 
-export { register };
+export { register,login };
