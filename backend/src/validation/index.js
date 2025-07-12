@@ -33,3 +33,19 @@ export const registerSchema = z
     .string()
     .min(8, "Password must be at least 8 characters"),
 });
+
+
+export const createQuestionSchema = z.object({
+  title: z
+    .string()
+    .min(10, "Title must be at least 10 characters")
+    .max(200, "Title cannot exceed 200 characters")
+    .trim(),
+
+  description: z.union([
+    z.string().min(1, "Description is required"), // for HTML-based editors
+    z.record(z.any()) // for JSON-based editors (like TipTap, Slate)
+  ]),
+
+  tags: z.array(z.string()).min(1, "At least one tag is required"), // optional if you handle tags separately
+});

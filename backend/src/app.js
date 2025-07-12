@@ -8,8 +8,10 @@ const app = express();
 
 app.use(
   cors({
-    origin: process.env.CORS_ORIGIN,
+    origin: ["http://localhost:5173", "http://localhost:3000"],
     credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
@@ -19,7 +21,7 @@ app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 
 app.use(cookieParser());
 
-app.use("/user",UserRouter);
+app.use("/api/v1/user", UserRouter);
 
 
 app.use(errorMiddleware);
