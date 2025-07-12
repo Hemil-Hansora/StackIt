@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { mockUsers, mockQuestions, mockAnswers, mockNotifications, User, Question, Answer, Notification } from '../lib/mock-data';
+import { mockUsers, mockQuestions, mockAnswers, mockNotifications } from "../lib/mock-data";
+import { User, Question, Answer, Notification } from '../lib/types';
 
 interface AuthState {
   currentUser: User | null;
