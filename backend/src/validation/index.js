@@ -11,7 +11,7 @@ export const registerSchema = z
         "Username can only contain letters, numbers, and underscores"
       ),
 
-    email: z.string().email("Invalid email addr ess"),
+    email: z.string().email("Invalid email address"),
 
     password: z
       .string()
