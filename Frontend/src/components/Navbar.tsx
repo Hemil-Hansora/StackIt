@@ -26,7 +26,7 @@ import {
 } from './ui/dropdown-menu';
 import { Badge } from './ui/badge';
 import AuthDialog from './AuthDialog';
-import { useApp } from '../contexts/AppContext';
+import { useApp } from '../context/AppContext';
 import { useAuth } from '../hooks/useAuth';
 import { useNotifications } from '../hooks/useNotifications';
 

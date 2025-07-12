@@ -5,7 +5,7 @@ import { ChevronUp, MessageSquare, Eye, CheckCircle, Clock } from 'lucide-react'
 import { Card, CardContent } from './ui/card';
 import { Badge } from './ui/badge';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
-import { useApp } from '../contexts/AppContext';
+import { useApp } from '../context/AppContext';
 import { Question } from '../lib/types';
 
 interface QuestionCardProps {
