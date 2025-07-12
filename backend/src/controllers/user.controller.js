@@ -8,7 +8,7 @@ import { loginSchema, registerSchema } from "../validation";
 const generateAccessToken = async (userId) => {
   try {
     const user = await User.findById(userId);
-    console.log(process.env.ACCESS_TOKEN_SECRTE);
+    console.log(process.env.ACCESS_TOKEN_SECRET );
 
     const accessToken = user.generateAccessToken();
 
