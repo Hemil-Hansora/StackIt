@@ -18,7 +18,6 @@ const tagSchema = new mongoose.Schema({
 });
 
 // Indexes for performance
-tagSchema.index({ name: 1 });
 tagSchema.index({ createdAt: -1 });
 
 // Virtual for URL (if needed for routing)

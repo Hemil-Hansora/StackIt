@@ -48,6 +48,9 @@ const register = asyncHandler(async (req,res) => {
     role,
   });
 
+  // Get user without password and other sensitive fields
+  const createdUser = await User.findById(user._id).select("-password");
+
   if (!createdUser) {
     throw new ApiError(400, "Something went wrong while creating user");
   }
@@ -72,7 +75,7 @@ const login = asyncHandler(async (req, res) => {
     throw new ApiError(400, " Invalid Credentials");
   }
 
-  const isPasswordVaild = user.isPasswordCorrect(password);
+  const isPasswordVaild = await user.isPasswordCorrect(password);
 
   if (!isPasswordVaild) {
     throw new ApiError(400, "Invalid Credentials");
@@ -95,9 +98,11 @@ const login = asyncHandler(async (req, res) => {
       new ApiResponse(
         200,
         { user: loggedInUser, accessToken},
-        "User registered successfully"
+        "User logged in successfully"
       )
     );
 });
+
+
 
 export { register,login };
