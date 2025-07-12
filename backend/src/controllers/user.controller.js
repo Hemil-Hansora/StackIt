@@ -24,7 +24,7 @@ const generateAccessToken = async (userId) => {
     );
   }
 };
-const register = asyncHandler(async (req, res) => {
+const register = asyncHandler(async (req,res) => {
   const validUser = registerSchema.safeParse(req.body);
   if (!validUser.success) {
     throw new ApiError(400, validUser.error.message);
@@ -100,4 +100,4 @@ const login = asyncHandler(async (req, res) => {
     );
 });
 
-export { register };
+export { register,login };
