@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Navbar from './Navbar';
-import { useApp } from '../contexts/AppContext';
+import { useApp } from '../context/AppContext';
 
 interface LayoutProps {
   children: React.ReactNode;
