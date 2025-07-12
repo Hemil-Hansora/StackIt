@@ -292,7 +292,6 @@ Meet our amazing development team:
 
 ## 🙏 Acknowledgments
 
-- Inspired by Stack Overflow and similar Q&A platforms
 - Built during a hackathon event
 - Thanks to the open-source community for amazing tools and libraries
 
