@@ -1,8 +1,8 @@
-import User from "../models/user.model";
-import { ApiError } from "../utils/apiError";
-import { ApiResponse } from "../utils/apiResponse";
-import { asyncHandler } from "../utils/asyncHandler";
-import { loginSchema, registerSchema } from "../validation";
+import User from "../models/user.model.js";
+import { ApiError } from "../utils/apiError.js";
+import { ApiResponse } from "../utils/apiResponse.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
+import { loginSchema, registerSchema } from "../validation/index.js";
 
 
 const generateAccessToken = async (userId) => {
