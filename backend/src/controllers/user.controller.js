@@ -100,8 +100,6 @@ const login = asyncHandler(async (req, res) => {
     );
 });
 
-<<<<<<< HEAD
-export { register, login };
-=======
+
+
 export { register,login };
->>>>>>> de1e6d9c4ef89a0d5aa26440bbdb3a242e91424b
