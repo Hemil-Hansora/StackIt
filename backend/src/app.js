@@ -1,9 +1,8 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import { errorMiddleware } from "./middlewares/error.middleware.js";
-import { endedAuctionCron } from "./automation/endedAuctionCron.js";
-import { verifyCommissionCron } from "./automation/verifyCommissionCron.js";
+import { errorMiddleware } from "./middlewares/error.middlewares.js";
+
 
 const app = express();
 
