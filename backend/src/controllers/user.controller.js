@@ -48,6 +48,9 @@ const register = asyncHandler(async (req,res) => {
     role,
   });
 
+  // Get user without password and other sensitive fields
+  const createdUser = await User.findById(user._id).select("-password");
+
   if (!createdUser) {
     throw new ApiError(400, "Something went wrong while creating user");
   }
