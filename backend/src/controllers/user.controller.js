@@ -23,7 +23,7 @@ const generateAccessToken = async (userId) => {
     );
   }
 };
-const register = asyncHandler(async () => {
+const register = asyncHandler(async (req, res) => {
   const validUser = registerSchema.safeParse(req.body);
   if (!validUser.success) {
     throw new ApiError(400, validUser.error.message);
@@ -31,20 +31,32 @@ const register = asyncHandler(async () => {
 
   const { username, email, password, role } = validUser.data;
 
+  // Check if user already exists
+  const existingUser = await User.findOne({ 
+    $or: [{ email }, { username }] 
+  });
+
+  if (existingUser) {
+    throw new ApiError(409, "User with email or username already exists");
+  }
+
   const user = await User.create({
     password,
     username,
     email,
     role,
-  }).select("-password -role");
+  });
 
-  if (!user) {
-    throw new ApiError(400, "Somthing went wrong while creating user");
+  // Get user without password and other sensitive fields
+  const createdUser = await User.findById(user._id).select("-password");
+
+  if (!createdUser) {
+    throw new ApiError(400, "Something went wrong while creating user");
   }
 
   return res
-    .status(200)
-    .json(new ApiResponse(200, user, "User created successfully"));
+    .status(201)
+    .json(new ApiResponse(201, createdUser, "User created successfully"));
 });
 
 const login = asyncHandler(async (req, res) => {
