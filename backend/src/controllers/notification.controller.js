@@ -1,10 +1,10 @@
-import Notification from '../models/Notification.js';
-import User from '../models/User.js';
+import { Notification } from '../models/Notification.model.js';
+import { User } from '../models/user.model.js';
 import mongoose from 'mongoose';
 import { ApiError } from "../utils/apiError.js";
 import { ApiResponse } from "../utils/apiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
-import { emitNotification } from './notificationWebSocket.js';
+// import { emitNotification } from './notificationWebSocket.js'; // Comment out for now
 
 // @desc    Create a new notification
 // @route   POST /api/notifications

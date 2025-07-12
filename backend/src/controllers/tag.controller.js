@@ -1,6 +1,6 @@
-    import Tag from "../models/Tag.model.js";
+    import { Tag } from "../models/Tag.model.js";
     // import Question from "../models/Question.model.js";
-    import QuestionTag from "../models/QuestionTag.model.js";
+    import { QuestionTag } from "../models/QuestionTag.model.js";
     import { ApiError } from "../utils/apiError.js";
     import { ApiResponse } from "../utils/apiResponse.js";
     import { asyncHandler } from "../utils/asyncHandler.js";

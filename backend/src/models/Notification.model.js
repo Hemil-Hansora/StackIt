@@ -58,4 +58,4 @@ notificationSchema.virtual('timeAgo').get(function() {
   return 'Just now';
 });
 
-export default mongoose.model('Notification', notificationSchema);
+export const Notification = mongoose.model('Notification', notificationSchema);

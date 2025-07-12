@@ -38,4 +38,4 @@ voteSchema.virtual('voteType').get(function() {
   return this.value === 1 ? 'upvote' : 'downvote';
 });
 
-export default mongoose.model('Vote', voteSchema);
+export const Vote = mongoose.model('Vote', voteSchema);

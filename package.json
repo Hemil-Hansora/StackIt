@@ -1,0 +1,19 @@
+{
+  "name": "stackit",
+  "version": "1.0.0",
+  "description": "A Q&A platform like Stack Overflow",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd Frontend && npm run dev",
+    "install:all": "npm install && cd backend && npm install && cd ../Frontend && npm install",
+    "build": "cd Frontend && npm run build",
+    "start": "cd backend && npm start"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "keywords": ["qa", "forum", "questions", "answers", "nodejs", "react"],
+  "author": "",
+  "license": "ISC"
+}

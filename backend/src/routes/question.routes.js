@@ -8,7 +8,7 @@ import {
     acceptAnswer,
     getQuestionsByUser,
     searchQuestions
-} from '../controllers/questionController.js';
+} from '../controllers/question.controller.js';
 import { verifyJWT } from '../middlewares/auth.middleware.js';
 
 

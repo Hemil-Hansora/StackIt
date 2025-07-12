@@ -28,6 +28,7 @@ type AppAction =
   | { type: 'LOGOUT' }
   | { type: 'REGISTER'; payload: User }
   | { type: 'UPDATE_USER'; payload: Partial<User> & { id: string } }
+  | { type: 'SET_QUESTIONS'; payload: Question[] }
   | { type: 'ADD_QUESTION'; payload: Question }
   | { type: 'UPDATE_QUESTION'; payload: Partial<Question> & { id: string } }
   | { type: 'ADD_ANSWER'; payload: Answer }
@@ -96,6 +97,12 @@ function appReducer(state: AppState, action: AppAction): AppState {
         currentUser: state.currentUser?.id === action.payload.id 
           ? { ...state.currentUser, ...action.payload }
           : state.currentUser
+      };
+
+    case 'SET_QUESTIONS':
+      return {
+        ...state,
+        questions: action.payload
       };
       
     case 'ADD_QUESTION':

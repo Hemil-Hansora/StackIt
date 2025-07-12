@@ -63,22 +63,23 @@ export default function Navbar() {
   };
 
   return (
-    <nav className={`sticky top-0 z-50 border-b transition-colors ${
+    <nav className={`sticky top-0 z-50 border-b transition-all duration-300 backdrop-blur-md ${
       state.theme === 'dark' 
-        ? 'bg-gray-800 border-gray-700' 
-        : 'bg-white border-gray-200'
+        ? 'bg-gray-800/90 border-gray-700 shadow-lg shadow-gray-900/20' 
+        : 'bg-white/90 border-gray-200 shadow-lg shadow-gray-900/10'
     }`}>
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
+          <Link to="/" className="flex items-center space-x-3">
             <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-2 rounded-lg"
+              whileHover={{ scale: 1.05, rotate: 5 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white p-2.5 rounded-xl shadow-lg"
             >
               <span className="font-bold text-lg">SI</span>
             </motion.div>
-            <span className="font-bold text-xl hidden sm:block">
+            <span className="font-bold text-xl hidden sm:block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               StackIt
             </span>
           </Link>
@@ -92,7 +93,11 @@ export default function Navbar() {
                 placeholder="Search questions..."
                 value={state.searchQuery}
                 onChange={(e) => dispatch({ type: 'SET_SEARCH_QUERY', payload: e.target.value })}
-                className="pl-10 pr-4"
+                className={`pl-10 pr-4 transition-all duration-300 focus:ring-2 ${
+                  state.theme === 'dark' 
+                    ? 'bg-gray-700/50 border-gray-600 focus:ring-blue-500/50' 
+                    : 'bg-gray-50/50 border-gray-300 focus:ring-blue-500/50'
+                } backdrop-blur-sm`}
               />
             </div>
           </form>

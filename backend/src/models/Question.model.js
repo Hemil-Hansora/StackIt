@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 
 const questionSchema = new mongoose.Schema({
-  // Basic Question Information (matching your schema)
   title: {
     type: String,
     required: [true, 'Question title is required'],
@@ -10,39 +9,72 @@ const questionSchema = new mongoose.Schema({
     maxlength: [200, 'Title cannot exceed 200 characters']
   },
   
-  description: {
-    type: mongoose.Schema.Types.Mixed, // Rich Text JSON or HTML depending on editor
-    required: [true, 'Question description is required']
+  body: {
+    type: String,
+    required: [true, 'Question body is required'],
+    minlength: [20, 'Question body must be at least 20 characters']
   },
   
   // User Reference (Foreign Key)
-  userId: {
+  author: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true
   },
   
+  // Tags array
+  tags: [{
+    type: String,
+    trim: true,
+    lowercase: true
+  }],
+  
   // Accepted Answer Reference (nullable FK)
-  acceptedAnswerId: {
+  acceptedAnswer: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Answer',
     default: null
+  },
+
+  // Stats
+  viewCount: {
+    type: Number,
+    default: 0
+  },
+
+  voteCount: {
+    type: Number,
+    default: 0
+  },
+
+  answerCount: {
+    type: Number,
+    default: 0
+  },
+
+  score: {
+    type: Number,
+    default: 0
   }
 }, {
-  timestamps: true, // This provides createdAt and updatedAt automatically
+  timestamps: true,
   toJSON: { virtuals: true },
   toObject: { virtuals: true }
 });
 
 // Indexes for performance optimization
-questionSchema.index({ title: 'text', description: 'text' });
-questionSchema.index({ userId: 1, createdAt: -1 });
-questionSchema.index({ acceptedAnswerId: 1 });
+questionSchema.index({ title: 'text', body: 'text' });
+questionSchema.index({ author: 1, createdAt: -1 });
+questionSchema.index({ acceptedAnswer: 1 });
 questionSchema.index({ createdAt: -1 });
+questionSchema.index({ tags: 1 });
+questionSchema.index({ voteCount: -1 });
 
-// Virtual for URL-friendly ID (if needed for routing)
-questionSchema.virtual('url').get(function() {
-  return `/questions/${this._id}`;
+// Virtual to get answers
+questionSchema.virtual('answers', {
+  ref: 'Answer',
+  localField: '_id',
+  foreignField: 'question'
 });
 
-export default mongoose.model('Question', questionSchema);
+export const Question = mongoose.model('Question', questionSchema);

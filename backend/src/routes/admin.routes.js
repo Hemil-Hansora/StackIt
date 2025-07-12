@@ -6,11 +6,12 @@ import {
   sendAnnouncement,
   getPlatformStats,
 } from "../controllers/admin.controller.js";
-import { authMiddleware, isAdmin } from "../middlewares/auth.middleware.js";
+import { verifyJWT } from "../middlewares/auth.middleware.js";
+import { isAdmin } from "../middlewares/error.middlewares.js";
 
 const router = express.Router();
 
-router.use(authMiddleware, isAdmin); // restrict all routes to admin only
+router.use(verifyJWT, isAdmin); // restrict all routes to admin only
 
 router.put("/user/:userId/toggle-ban", toggleUserBan);
 router.delete("/question/:questionId", deleteQuestionByAdmin);

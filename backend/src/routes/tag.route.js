@@ -6,7 +6,7 @@ import {
     getTagByName,
     updateTag,
     deleteTag
-} from '../controllers/tagController.js';
+} from '../controllers/tag.controller.js';
 import { verifyJWT } from '../middlewares/auth.middleware.js';
 
 const router = express.Router();

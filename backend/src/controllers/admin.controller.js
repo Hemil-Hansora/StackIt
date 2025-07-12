@@ -1,9 +1,9 @@
 import { ApiResponse } from "../utils/apiResponse.js";
 import { ApiError } from "../utils/apiError.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
-import User from "../models/user.model.js";
-import Question from "../models/Question.model.js";
-import Answer from "../models/Answer.model.js";
+import { User } from "../models/user.model.js";
+import { Question } from "../models/Question.model.js";
+import { Answer } from "../models/Answer.model.js";
 
 // 🔒 Ban or Unban User
 export const toggleUserBan = asyncHandler(async (req, res) => {

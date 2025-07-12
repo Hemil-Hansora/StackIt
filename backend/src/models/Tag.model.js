@@ -25,4 +25,4 @@ tagSchema.virtual('url').get(function() {
   return `/tags/${this.name}`;
 });
 
-export default mongoose.model('Tag', tagSchema);
+export const Tag = mongoose.model('Tag', tagSchema);

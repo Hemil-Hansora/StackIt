@@ -37,4 +37,4 @@ commentSchema.virtual('url').get(function() {
   return `/answers/${this.answerId}/comments/${this._id}`;
 });
 
-export default mongoose.model('Comment', commentSchema);
+export const Comment = mongoose.model('Comment', commentSchema);

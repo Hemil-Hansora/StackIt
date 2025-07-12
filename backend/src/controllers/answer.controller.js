@@ -1,6 +1,6 @@
-import User from "../models/user.model.js";
-import Answer from "../models/Answer.model.js";
-import Question from "../models/Question.model.js";
+import { User } from "../models/user.model.js";
+import { Answer } from "../models/Answer.model.js";
+import { Question } from "../models/Question.model.js";
 import { ApiError } from "../utils/apiError.js";
 import { ApiResponse } from "../utils/apiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";

@@ -26,4 +26,4 @@ questionTagSchema.index({ questionId: 1, tagId: 1 }, { unique: true });
 questionTagSchema.index({ questionId: 1 });
 questionTagSchema.index({ tagId: 1 });
 
-export default mongoose.model('QuestionTag', questionTagSchema);
+export const QuestionTag = mongoose.model('QuestionTag', questionTagSchema);

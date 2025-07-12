@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
-import Vote from '../models/Vote.model.js';
-import Answer from '../models/Answer.model.js';
+import { Vote } from '../models/Vote.model.js';
+import { Answer } from '../models/Answer.model.js';
 import { ApiError } from "../utils/apiError.js";
 import { ApiResponse } from "../utils/apiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";

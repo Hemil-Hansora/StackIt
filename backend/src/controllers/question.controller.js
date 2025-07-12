@@ -1,8 +1,8 @@
-import { ApiError } from "../utils/apiError";
-import { ApiResponse } from "../utils/apiResponse";
-import { asyncHandler } from "../utils/asyncHandler";
-import Question from "../models/Question.model";
-import { Answer } from "../models/Answer.model";
+import { ApiError } from "../utils/apiError.js";
+import { ApiResponse } from "../utils/apiResponse.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
+import { Question } from "../models/Question.model.js";
+import { Answer } from "../models/Answer.model.js";
 import mongoose from 'mongoose';
 
 export const createQuestion = asyncHandler(async (req, res) => {
