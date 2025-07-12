@@ -1,7 +1,7 @@
 import { ApiError } from "../utils/apiError";
 import { ApiResponse } from "../utils/apiResponse";
 import { asyncHandler } from "../utils/asyncHandler";
-import QuestionModel from "../models/Question.model";
+import Question from "../models/Question.model";
 import { Answer } from "../models";
 
 export const createQuestion = asyncHandler(async (req, res) => {
@@ -14,7 +14,7 @@ export const createQuestion = asyncHandler(async (req, res) => {
   }
 
   // Create question
-  const question = await QuestionModel.create({
+  const question = await Question.create({
     title,
     description,
     userId,
@@ -58,7 +58,7 @@ export const getQuestions = asyncHandler(async (req, res) => {
     }
 
     // Execute query
-    const questions = await QuestionModel.find(query)
+    const questions = await Question.find(query)
       .populate('userId', 'username email')
       .populate('acceptedAnswerId')
       .sort(sortOptions)
@@ -66,7 +66,7 @@ export const getQuestions = asyncHandler(async (req, res) => {
       .limit(limit);
 
     // Get total count for pagination
-    const totalQuestions = await QuestionModel.countDocuments(query);
+    const totalQuestions = await Question.countDocuments(query);
     const totalPages = Math.ceil(totalQuestions / limit);
 
     res.status(200).json({
@@ -100,7 +100,7 @@ export const getQuestionById = asyncHandler( async (req, res) => {
     }
 
     // Find question and populate related data
-    const question = await QuestionModel.findById(id)
+    const question = await Question.findById(id)
       .populate('userId', 'username email')
       .populate('acceptedAnswerId');
 
@@ -144,7 +144,7 @@ export const updateQuestion =asyncHandler( async (req, res) => {
     }
 
     // Find question
-    const question = await QuestionModel.findById(id);
+    const question = await Question.findById(id);
     
     if (!question) {
       return res.status(404).json({
@@ -196,7 +196,7 @@ export const deleteQuestion = asyncHandler( async (req, res) => {
     }
 
     // Find question
-    const question = await QuestionModel.findById(id);
+    const question = await Question.findById(id);
     
     if (!question) {
       return res.status(404).json({
@@ -244,7 +244,7 @@ export const acceptAnswer =  asyncHandler( async (req, res) => {
     }
 
     // Find question
-    const question = await QuestionModel.findById(id);
+    const question = await Question.findById(id);
     
     if (!question) {
       return res.status(404).json({
@@ -302,14 +302,14 @@ export const getQuestionsByUser = asyncHandler( async (req, res) => {
     }
 
     // Find questions by user
-    const questions = await QuestionModel.find({ userId })
+    const questions = await Question.find({ userId })
       .populate('userId', 'username email')
       .populate('acceptedAnswerId')
       .sort({ createdAt: -1 })
       .skip(skip)
       .limit(limit);
 
-    const totalQuestions = await QuestionModel.countDocuments({ userId });
+    const totalQuestions = await Question.countDocuments({ userId });
     const totalPages = Math.ceil(totalQuestions / limit);
 
     res.status(200).json({
@@ -347,7 +347,7 @@ export const searchQuestions = asyncHandler(async (req, res) => {
     }
 
     // Text search
-    const questions = await QuestionModel.find({
+    const questions = await Question.find({
       $text: { $search: q }
     })
     .populate('userId', 'username email')
@@ -356,7 +356,7 @@ export const searchQuestions = asyncHandler(async (req, res) => {
     .skip(skip)
     .limit(limit);
 
-    const totalQuestions = await QuestionModel.countDocuments({
+    const totalQuestions = await Question.countDocuments({
       $text: { $search: q }
     });
 
