@@ -12,7 +12,7 @@ import { verifyJWT } from '../middlewares/auth.middleware.js';
 const router = express.Router();
 
 // All routes require authentication
-router.use(authenticate);
+router.use(verifyJWT);
 
 // Get user notifications
 router.get('/', getUserNotifications);
