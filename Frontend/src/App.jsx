@@ -1,16 +1,17 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './index.css'
-function App() {
-  const [count, setCount] = useState(0)
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Login from './pages/login.jsx';
+import Signup from './pages/SignUp.jsx';
 
+function App() {
   return (
-    <>
-      hello
-      <h1 className='bg-amber-400'>stackit</h1>
-    </>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<h1 className="text-3xl text-center mt-10">Welcome to StackIt</h1>} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
