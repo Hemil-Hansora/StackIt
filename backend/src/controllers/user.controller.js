@@ -1,13 +1,10 @@
-import User from "../models/user.model";
+import User from "../models/User.model.js";
 import { ApiError } from "../utils/apiError";
 import { ApiResponse } from "../utils/apiResponse";
 import { asyncHandler } from "../utils/asyncHandler";
 import { registerSchema } from "../validation";
 
-
-
-const register = asyncHandler(async ()=>{
-
+const register = asyncHandler(async (req, res) => {
     const validUser = registerSchema.safeParse(req.body)
     if(!validUser.success){
         throw new ApiError(400 , validUser.error.message)
@@ -21,7 +18,6 @@ const register = asyncHandler(async ()=>{
         email,
         role
     }).select("-password -role")
-
 
     if(!user) {
         throw new ApiError(400 , "Somthing went wrong while creating user")
