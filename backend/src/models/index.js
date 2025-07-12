@@ -1,5 +1,5 @@
 // Export all models for easy importing
-import User from './User.model.js';
+import User from './user.model.js';
 import Question from './Question.model.js';
 import Answer from './Answer.model.js';
 import Tag from './Tag.model.js';
