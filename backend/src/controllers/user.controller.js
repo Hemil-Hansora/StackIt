@@ -1,8 +1,9 @@
-import User from "../models/user.model";
-import { ApiError } from "../utils/apiError";
-import { ApiResponse } from "../utils/apiResponse";
-import { asyncHandler } from "../utils/asyncHandler";
-import { loginSchema, registerSchema } from "../validation";
+
+import { User } from "../models/index.js";
+import { ApiError } from "../utils/apiError.js";
+import { ApiResponse } from "../utils/apiResponse.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
+import { loginSchema, registerSchema } from "../validation/index.js";
 
 
 const generateAccessToken = async (userId) => {
@@ -36,7 +37,7 @@ const register = asyncHandler(async () => {
     username,
     email,
     role,
-  }).select("-password -role");
+  });
 
   if (!user) {
     throw new ApiError(400, "Somthing went wrong while creating user");
