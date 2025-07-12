@@ -1,4 +1,5 @@
-import User from "../models/user.model.js";
+
+import { User } from "../models/index.js";
 import { ApiError } from "../utils/apiError.js";
 import { ApiResponse } from "../utils/apiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
@@ -23,7 +24,7 @@ const generateAccessToken = async (userId) => {
     );
   }
 };
-const register = asyncHandler(async (req, res) => {
+const register = asyncHandler(async (req,res) => {
   const validUser = registerSchema.safeParse(req.body);
   if (!validUser.success) {
     throw new ApiError(400, validUser.error.message);
@@ -46,9 +47,6 @@ const register = asyncHandler(async (req, res) => {
     email,
     role,
   });
-
-  // Get user without password and other sensitive fields
-  const createdUser = await User.findById(user._id).select("-password");
 
   if (!createdUser) {
     throw new ApiError(400, "Something went wrong while creating user");
@@ -102,4 +100,8 @@ const login = asyncHandler(async (req, res) => {
     );
 });
 
+<<<<<<< HEAD
 export { register, login };
+=======
+export { register,login };
+>>>>>>> de1e6d9c4ef89a0d5aa26440bbdb3a242e91424b
