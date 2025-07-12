@@ -76,7 +76,7 @@ export default function Signup() {
     
     try {
       await dispatch(registerUser(formData)).unwrap();
-      navigate('/'); // Redirect to home or dashboard after successful signup
+      navigate('/login'); // Redirect to login after successful signup
     } catch (error) {
       console.error('Signup failed:', error);
     }
