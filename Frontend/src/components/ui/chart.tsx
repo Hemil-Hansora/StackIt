@@ -1,8 +1,8 @@
 import * as React from 'react';
 import * as RechartsPrimitive from 'recharts';
+import { cn } from '../../lib/utils';
 
 
-import { cn } from '@/lib/utils';
 
 // Format: { THEME_NAME: CSS_SELECTOR }
 const THEMES = { light: '', dark: '.dark' } as const;
@@ -198,6 +198,7 @@ const ChartTooltipContent = React.forwardRef<
                 )}
               >
                 {formatter && item?.value !== undefined && item.name ? (
+                  //@ts-ignore
                   formatter(item.value, item.name, item, index, item.payload)
                 ) : (
                   <>
