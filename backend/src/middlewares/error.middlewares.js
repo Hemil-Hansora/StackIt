@@ -28,3 +28,9 @@ export const errorMiddleware = (err, req, res, next) => {
     return res.status(err.statusCode).json(new ApiResponse(err.statusCode, err,errorMessage));
   };
   
+export const isAdmin = (req, res, next) => {
+  if (req.user?.role !== "ADMIN") {
+    throw new ApiError(403, "Admin access required");
+  }
+  next();
+};
